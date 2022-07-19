@@ -13,11 +13,12 @@ public class UnitOfMeasure {
     private Long id;
     private String description;
 
-    public String getUom() {
+    public String getDescription() {
         return description;
     }
 
-    public void setUom(String uom) {
-        this.description = description;
+    public void setDescription(String uom) {
+            this.description = uom;
+
     }
 }
