@@ -45,7 +45,7 @@ class RecipeControllerTest {
 
         when(recipeService.findById(anyLong())).thenReturn(recipe);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/show/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/2/show"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
@@ -90,12 +90,12 @@ class RecipeControllerTest {
                 .andExpect(model().attributeExists("recipe"));
     }
 
-   /* @Test
+    @Test
     public void testDeleteAction() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"));
 
-        //verify(recipeService, times(1)).deleteById(anyLong());
-    }*/
+        verify(recipeService, times(1)).deleteById(anyLong());
+    }
 }
