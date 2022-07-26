@@ -1,8 +1,10 @@
 package guru.springframework.services;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import guru.springframework.converters.RecipeCommandToRecipe;
 import guru.springframework.converters.RecipeToRecipeCommand;
 import guru.springframework.domain.Recipe;
+import guru.springframework.exceptions.NotFoundException;
 import guru.springframework.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,6 +69,23 @@ class RecipeServiceImplTest {
         verify(recipeRepository, never()).findAll();
     }
 
+    @Test
+    public void getRecipeByIdTestNotFound() throws Exception {
+
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        NotFoundException notFoundException = assertThrows(
+                NotFoundException.class, () -> recipeService.findById(1L),
+                "Expected exception to throw an error, But it didn't"
+        );
+
+        assertTrue(notFoundException.getMessage().contains("Recipe Not Found"));
+        //Recipe recipeReturned = recipeService.findById(1L);
+
+        //should go boom
+    }
     @Test
     public void testDeleteById() throws Exception {
 
