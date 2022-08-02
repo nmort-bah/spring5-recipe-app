@@ -57,15 +57,15 @@ class RecipeServiceImplTest {
     @Test
     public void getRecipeByIdTest() throws Exception{
         Recipe recipe = new Recipe();
-        recipe.setId(1L);
+        recipe.setId("1");
         Optional<Recipe> recipeOptional = Optional.of(recipe);
 
-        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        when(recipeRepository.findById(anyString())).thenReturn(recipeOptional);
 
-        Recipe recipeReturned = recipeService.findById(1L);
+        Recipe recipeReturned = recipeService.findById("1");
 
         assertNotNull(recipeReturned, "Null recipe returned");
-        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, times(1)).findById(anyString());
         verify(recipeRepository, never()).findAll();
     }
 
@@ -74,10 +74,10 @@ class RecipeServiceImplTest {
 
         Optional<Recipe> recipeOptional = Optional.empty();
 
-        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        when(recipeRepository.findById(anyString())).thenReturn(recipeOptional);
 
         NotFoundException notFoundException = assertThrows(
-                NotFoundException.class, () -> recipeService.findById(1L),
+                NotFoundException.class, () -> recipeService.findById("1"),
                 "Expected exception to throw an error, But it didn't"
         );
 
@@ -90,7 +90,7 @@ class RecipeServiceImplTest {
     public void testDeleteById() throws Exception {
 
         //given
-        Long idToDelete = Long.valueOf(2L);
+        String idToDelete = String.valueOf("2");
 
         //when
         recipeService.deleteById(idToDelete);
@@ -98,6 +98,6 @@ class RecipeServiceImplTest {
         //no 'when', since method has void return type
 
         //then
-        verify(recipeRepository, times(1)).deleteById(anyLong());
+        verify(recipeRepository, times(1)).deleteById(anyString());
     }
 }

@@ -1,4 +1,6 @@
+/*
 package guru.springframework.bootstrap;
+
 
 import guru.springframework.domain.Category;
 import guru.springframework.domain.UnitOfMeasure;
@@ -90,3 +92,5 @@ public class BootStrapMySQL implements ApplicationListener<ContextRefreshedEvent
         unitOfMeasureRepository.save(uom8);
     }
 }
+
+ */

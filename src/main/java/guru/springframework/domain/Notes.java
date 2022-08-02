@@ -2,21 +2,23 @@ package guru.springframework.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
-@EqualsAndHashCode(exclude = {"recipe"})
-@Entity
+@Getter
+@Setter
+//@EqualsAndHashCode(exclude = {"recipe"})
+//@Entity
 public class Notes {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    private Recipe recipe;
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
-    @Lob
+    //@OneToOne
+    private Recipe recipe;
+    //@Lob
     private String recipeNotes;
 
 }

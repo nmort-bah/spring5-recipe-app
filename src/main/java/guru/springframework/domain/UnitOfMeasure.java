@@ -1,19 +1,22 @@
 package guru.springframework.domain;
 
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 
-@Data
-@Entity
+@Getter
+@Setter
+@Document
+//@Entity
 public class UnitOfMeasure {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
     private String description;
 
-    public String getDescription() {
+  /*  public String getDescription() {
         return description;
     }
 
@@ -21,4 +24,6 @@ public class UnitOfMeasure {
             this.description = uom;
 
     }
+
+   */
 }
